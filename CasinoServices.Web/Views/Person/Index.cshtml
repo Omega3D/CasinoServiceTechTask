@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CasinoServices.Domain.Entities.Person>
+
+<h1>Список покупців</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ім'я</th>
+            <th>Електронна пошта</th>
+            <th>Номер телефону</th>
+            <th>Адреса</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.Name</td>
+                <td>@person.Email</td>
+                <td>@person.Phone</td>
+                <td>@person.Address</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-controller="Person" asp-action="Create">Додати нового покупця</a>
