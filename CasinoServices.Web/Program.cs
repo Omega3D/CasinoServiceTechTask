@@ -14,7 +14,7 @@ builder.Services.AddScoped(provider =>
     var mongoDbService = provider.GetRequiredService<MongoDBService>();
     return mongoDbService.GetPersonCollection();
 });
-builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 var app = builder.Build();

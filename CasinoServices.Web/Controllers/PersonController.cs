@@ -6,16 +6,16 @@ namespace CasinoServices.Web.Controllers
 {
     public class PersonController : Controller
     {
-        private readonly IPersonRepository _personRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PersonController(IPersonRepository personRepository)
+        public PersonController(IUnitOfWork unitOfWork)
         {
-            _personRepository = personRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IActionResult> Index()
         {
-            var people = await _personRepository.GetAllAsync();
+            var people = await _unitOfWork.Person.GetAllAsync();
             return View(people);
         }
 
@@ -29,7 +29,7 @@ namespace CasinoServices.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _personRepository.CreateAsync(person);
+                await _unitOfWork.Person.CreateAsync(person);
                 return RedirectToAction("Index");
             }
 
@@ -39,7 +39,7 @@ namespace CasinoServices.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(string personId)
         {
-            var person = await _personRepository.GetByIdAsync(personId);
+            var person = await _unitOfWork.Person.GetByIdAsync(personId);
             if (person == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace CasinoServices.Web.Controllers
                 return View(person);
             }
 
-            var editPerson = await _personRepository.GetByIdAsync(person.Id);
+            var editPerson = await _unitOfWork.Person.GetByIdAsync(person.Id);
 
             if (editPerson == null)
             {
@@ -68,7 +68,7 @@ namespace CasinoServices.Web.Controllers
             editPerson.Phone = person.Phone;
             editPerson.Address = person.Address;
 
-            await _personRepository.UpdateAsync(editPerson);
+            await _unitOfWork.Person.UpdateAsync(editPerson);
 
             return RedirectToAction("Index");
         }
@@ -76,13 +76,13 @@ namespace CasinoServices.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
-            var person = await _personRepository.GetByIdAsync(id);
+            var person = await _unitOfWork.Person.GetByIdAsync(id);
             if (person == null)
             {
                 return NotFound();
             }
 
-            await _personRepository.DeleteAsync(id);
+            await _unitOfWork.Person.DeleteAsync(id);
             return RedirectToAction("Index");
         }
     }
