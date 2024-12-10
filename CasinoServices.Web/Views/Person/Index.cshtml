@@ -9,6 +9,7 @@
             <th>Електронна пошта</th>
             <th>Номер телефону</th>
             <th>Адреса</th>
+            <th>Дії</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,21 @@
                 <td>@person.Email</td>
                 <td>@person.Phone</td>
                 <td>@person.Address</td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Person" asp-action="Update" asp-route-personId="@person.Id"
+                           class="btn btn-success mx-2">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <form asp-controller="Person" asp-action="Delete" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@person.Id" />
+                            <button type="submit" class="btn btn-danger">
+                                Видалити
+                            </button>
+                        </form>
+                    </div>
+
+                </td>
             </tr>
         }
     </tbody>

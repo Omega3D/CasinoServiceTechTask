@@ -1,0 +1,24 @@
+﻿@model CasinoServices.Domain.Entities.Person
+
+<h1>Редагувати покупця</h1>
+
+<form asp-action="Update" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input class="form-control" asp-for="Email" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input class="form-control" asp-for="Phone" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input class="form-control" asp-for="Address" />
+    </div>
+    <button type="submit" class="btn btn-primary">Зберегти</button>
+</form>
