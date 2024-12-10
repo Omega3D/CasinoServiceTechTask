@@ -43,7 +43,13 @@ namespace CasinoServices.Tests
             };
 
             var mockCursor = new Mock<IAsyncCursor<Person>>();
-            mockCursor.Setup(x => x.Current).Returns(mockPersons);
+            mockCursor
+                .SetupSequence(x => x.MoveNextAsync(It.IsAny<CancellationToken>()))
+                .ReturnsAsync(true)
+                .ReturnsAsync(false);
+            mockCursor
+                .Setup(x => x.Current)
+                .Returns(mockPersons);
 
             var mockPersonCollection = new Mock<IMongoCollection<Person>>();
             mockPersonCollection
@@ -55,11 +61,11 @@ namespace CasinoServices.Tests
                 .ReturnsAsync(mockCursor.Object);
 
             var mockMongoService = new Mock<IMongoDBService>();
-            mockMongoService.Setup(x => x.GetPersonCollection())
+            mockMongoService
+                .Setup(x => x.GetPersonCollection())
                 .Returns(mockPersonCollection.Object);
 
             var repository = new Repository<Person>(mockMongoService.Object, mockPersonCollection.Object);
-
             var result = await repository.GetAllAsync();
 
             Assert.NotNull(result);
