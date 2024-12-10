@@ -9,7 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<MongoDBService>();
+builder.Services.AddScoped(provider =>
+{
+    var mongoDbService = provider.GetRequiredService<MongoDBService>();
+    return mongoDbService.GetPersonCollection();
+});
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 var app = builder.Build();
 

@@ -7,22 +7,28 @@ namespace CasinoServices.Infrastracture.Services
 {
     public class MongoDBService
     {
-        private readonly IMongoCollection<Person> _personCollection;
+        private readonly IMongoDatabase _database;
 
         public MongoDBService(IConfiguration configuration)
         {
-            var connectionString = configuration.GetSection("MongoDB:ConnectionURI").Value;
-            var databaseName = configuration.GetSection("MongoDB:DatabaseName").Value;
-            var collectionName = configuration.GetSection("MongoDB:CollectionName").Value;
+            var connectionString = configuration.GetSection("MongoDB:ConnectionURI").Value
+                ?? throw new ArgumentNullException("MongoDB connection string is not configured");
+
+            var databaseName = configuration.GetSection("MongoDB:DatabaseName").Value
+                ?? throw new ArgumentNullException("MongoDB database name is not configured");
 
             var client = new MongoClient(connectionString);
-            var database = client.GetDatabase(databaseName);
-            _personCollection = database.GetCollection<Person>(collectionName);
+            _database = client.GetDatabase(databaseName);
+        }
+
+        public IMongoCollection<T> GetCollection<T>(string collectionName) where T : class
+        {
+            return _database.GetCollection<T>(collectionName);
         }
 
         public IMongoCollection<Person> GetPersonCollection()
         {
-            return _personCollection;
+            return GetCollection<Person>("Persons");
         }
     }
 }
