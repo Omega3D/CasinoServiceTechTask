@@ -1,5 +1,6 @@
 ﻿using CasinoServices.Application.Interfaces;
 using CasinoServices.Domain.Entities;
+using CasinoServices.Infrastracture.Interfaces;
 using CasinoServices.Infrastracture.Services;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -10,9 +11,9 @@ namespace CasinoServices.Application.Repository
     public class Repository<T> : IRepository<T> where T : class
     {
         internal readonly IMongoCollection<T> _collection;
-        private readonly MongoDBService _mongoDBService;
+        private readonly IMongoDBService _mongoDBService;
 
-        public Repository(MongoDBService dBService, IMongoCollection<T> collection)
+        public Repository(IMongoDBService dBService, IMongoCollection<T> collection)
         {
             _mongoDBService = dBService;
             _collection = collection;

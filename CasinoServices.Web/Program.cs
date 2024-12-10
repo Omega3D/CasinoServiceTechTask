@@ -1,5 +1,6 @@
 using CasinoServices.Application.Interfaces;
 using CasinoServices.Application.Repository;
+using CasinoServices.Infrastracture.Interfaces;
 using CasinoServices.Infrastracture.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddScoped(provider =>
     return mongoDbService.GetPersonCollection();
 });
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IMongoDBService, MongoDBService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 var app = builder.Build();

@@ -1,5 +1,6 @@
 ﻿using CasinoServices.Application.Interfaces;
 using CasinoServices.Domain.Entities;
+using CasinoServices.Infrastracture.Interfaces;
 using CasinoServices.Infrastracture.Services;
 using MongoDB.Driver;
 
@@ -7,7 +8,7 @@ namespace CasinoServices.Application.Repository
 {
     public class PersonRepository : Repository<Person>, IPersonRepository
     {
-        public PersonRepository(MongoDBService dBService, IMongoCollection<Person> collection)
+        public PersonRepository(IMongoDBService dBService, IMongoCollection<Person> collection)
             : base(dBService, collection)
         {
             

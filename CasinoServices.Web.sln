@@ -5,11 +5,13 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasinoServices.Web", "CasinoServices.Web\CasinoServices.Web.csproj", "{DD964BE5-DDA6-45EE-974F-DE484169BF25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasinoServices.Infrastracture", "CasinoServices.Infrastracture\CasinoServices.Infrastracture.csproj", "{E8E6016A-7373-434C-AC92-44CF1860642B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasinoServices.Infrastracture", "CasinoServices.Infrastracture\CasinoServices.Infrastracture.csproj", "{E8E6016A-7373-434C-AC92-44CF1860642B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasinoServices.Application", "CasinoServices.Application\CasinoServices.Application.csproj", "{4E093563-C0E2-4B3C-9648-441461793037}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasinoServices.Application", "CasinoServices.Application\CasinoServices.Application.csproj", "{4E093563-C0E2-4B3C-9648-441461793037}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasinoServices.Domain", "CasinoServices.Domain\CasinoServices.Domain.csproj", "{B4B7CF5A-816D-4D78-9387-024A932A4F8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasinoServices.Domain", "CasinoServices.Domain\CasinoServices.Domain.csproj", "{B4B7CF5A-816D-4D78-9387-024A932A4F8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasinoServices.Tests", "CasinoServices.Tests\CasinoServices.Tests.csproj", "{6D776E68-ECF1-40EA-94D6-B2088F067D4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B4B7CF5A-816D-4D78-9387-024A932A4F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4B7CF5A-816D-4D78-9387-024A932A4F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4B7CF5A-816D-4D78-9387-024A932A4F8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D776E68-ECF1-40EA-94D6-B2088F067D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D776E68-ECF1-40EA-94D6-B2088F067D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D776E68-ECF1-40EA-94D6-B2088F067D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D776E68-ECF1-40EA-94D6-B2088F067D4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

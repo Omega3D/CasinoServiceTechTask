@@ -1,11 +1,12 @@
 ﻿using CasinoServices.Domain.Entities;
+using CasinoServices.Infrastracture.Interfaces;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
 
 namespace CasinoServices.Infrastracture.Services
 {
-    public class MongoDBService
+    public class MongoDBService : IMongoDBService
     {
         private readonly IMongoDatabase _database;
 
@@ -26,7 +27,7 @@ namespace CasinoServices.Infrastracture.Services
             return _database.GetCollection<T>(collectionName);
         }
 
-        public IMongoCollection<Person> GetPersonCollection()
+        public virtual IMongoCollection<Person> GetPersonCollection()
         {
             return GetCollection<Person>("Persons");
         }
